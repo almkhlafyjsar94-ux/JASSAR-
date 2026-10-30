@@ -1,5 +1,6 @@
 package com.jassar.games
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerViewGames.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewGames.adapter = GameAdapter(games) { game ->
-            Toast.makeText(this, "تم اختيار: ${game.title}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, GameDetailActivity::class.java)
+            intent.putExtra("game_title", game.title)
+            intent.putExtra("game_description", game.description)
+            startActivity(intent)
         }
     }
 }
