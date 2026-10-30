@@ -1,84 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F3F4F6"
-    android:orientation="vertical"
-    android:padding="20dp">
-
-    <TextView
-        android:id="@+id/gameDetailTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="#DBEAFE"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="6dp"
-        android:text="مستوى جديد"
-        android:textColor="#1D4ED8"
-        android:textSize="12sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/gameDetailTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="لعبة الأرقام"
-        android:textColor="#111827"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/gameDetailDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:lineSpacingExtra="4dp"
-        android:text="تحدي سريع للسرعة والتركيز"
-        android:textColor="#4B5563"
-        android:textSize="18sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:background="#D1D5DB" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="الوصف: اللعبة مناسبة لجميع الأعمار وتعمل بشكل سريع ومريح داخل التطبيق."
-        android:textColor="#374151"
-        android:textSize="16sp" />
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E5E7EB"
-            android:text="رجوع"
-            android:textColor="#111827" />
+        <View
+            android:id="@+id/gameIcon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="16dp"
+            android:background="#1F6FEB" />
 
-        <Button
-            android:id="@+id/playButton"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#1F6FEB"
-            android:text="ابدأ اللعب"
-            android:textColor="#FFFFFF" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/gameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="لعبة الأرقام"
+                android:textColor="#111827"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/gameDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="تحدي سريع للسرعة والتركيز"
+                android:textColor="#6B7280"
+                android:textSize="14sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

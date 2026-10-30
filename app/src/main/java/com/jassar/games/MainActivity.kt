@@ -26,10 +26,17 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerViewGames.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewGames.adapter = GameAdapter(games) { game ->
-            val intent = Intent(this, GameDetailActivity::class.java)
-            intent.putExtra("game_title", game.title)
-            intent.putExtra("game_description", game.description)
-            startActivity(intent)
+            when (game.title) {
+                "لعبة الأرقام" -> {
+                    startActivity(Intent(this, NumberGameActivity::class.java))
+                }
+                else -> {
+                    val intent = Intent(this, GameDetailActivity::class.java)
+                    intent.putExtra("game_title", game.title)
+                    intent.putExtra("game_description", game.description)
+                    startActivity(intent)
+                }
+            }
         }
     }
 }

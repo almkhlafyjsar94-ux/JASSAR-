@@ -3,29 +3,71 @@ package com.jassar.games
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.jassar.games.databinding.ActivityGameDetailBinding
+import com.jassar.games.databinding.ActivityNumberGameBinding
+import kotlin.random.Random
 
-class GameDetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityGameDetailBinding
+class NumberGameActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityNumberGameBinding
+    private var score = 0
+    private var firstNumber = 0
+    private var secondNumber = 0
+    private var answer = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityGameDetailBinding.inflate(layoutInflater)
+        binding = ActivityNumberGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val title = intent.getStringExtra("game_title") ?: "لعبة"
-        val description = intent.getStringExtra("game_description") ?: "تفضل باللعب الآن."
+        generateQuestion()
 
-        binding.gameDetailTitle.text = title
-        binding.gameDetailDescription.text = description
-        binding.gameDetailTag.text = "مستوى جديد"
+        binding.submitButton.setOnClickListener {
+            val input = binding.answerInput.text.toString().trim()
+            if (input.isEmpty()) {
+                Toast.makeText(this, "أدخل الإجابة أولاً", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-        binding.backButton.setOnClickListener {
-            finish()
+            val userAnswer = input.toIntOrNull()
+            if (userAnswer == null) {
+                Toast.makeText(this, "يرجى إدخال رقم صحيح", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (userAnswer == answer) {
+                score += 10
+                binding.feedbackText.text = "إجابة صحيحة!"
+                binding.feedbackText.setTextColor(getColor(android.R.color.holo_green_dark))
+            } else {
+                binding.feedbackText.text = "إجابة خاطئة! الإجابة الصحيحة هي $answer"
+                binding.feedbackText.setTextColor(getColor(android.R.color.holo_red_dark))
+            }
+
+            binding.scoreText.text = "النقاط: $score"
+            binding.answerInput.text?.clear()
+            generateQuestion()
         }
 
-        binding.playButton.setOnClickListener {
-            Toast.makeText(this, "تم فتح: $title", Toast.LENGTH_SHORT).show()
+        binding.backButton.setOnClickListener { finish() }
+    }
+
+    private fun generateQuestion() {
+        val operation = Random.nextInt(1, 4)
+        firstNumber = Random.nextInt(2, 12)
+        secondNumber = Random.nextInt(1, 10)
+
+        when (operation) {
+            1 -> {
+                answer = firstNumber + secondNumber
+                binding.questionText.text = "$firstNumber + $secondNumber = ?"
+            }
+            2 -> {
+                answer = firstNumber - secondNumber
+                binding.questionText.text = "$firstNumber - $secondNumber = ?"
+            }
+            else -> {
+                answer = firstNumber * secondNumber
+                binding.questionText.text = "$firstNumber × $secondNumber = ?"
+            }
         }
     }
 }
