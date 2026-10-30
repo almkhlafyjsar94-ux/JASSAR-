@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:gravity="center"
+    android:background="#F3F4F6"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/welcomeTitle"
+        android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="JASSAR"
-        android:textColor="#1F2937"
-        android:textSize="30sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="JASSAR Games"
+        android:textColor="#111827"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/subtitle"
+        android:id="@+id/subTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="جميع الألعاب في تطبيق واحد"
+        android:layout_marginBottom="16dp"
+        android:text="اختر لعبة من القائمة"
         android:textColor="#4B5563"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewGames"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
 
 </LinearLayout>

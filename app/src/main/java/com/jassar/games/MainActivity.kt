@@ -1,7 +1,9 @@
 package com.jassar.games
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jassar.games.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +14,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.welcomeTitle.text = getString(R.string.app_name)
-        binding.subtitle.text = getString(R.string.home_message)
+        val games = listOf(
+            Game("لعبة الأرقام", "تحدي سريع للسرعة والتركيز", "#1F6FEB"),
+            Game("لعبة الذاكرة", "اختبر ذاكرتك وانسخ الأنماط", "#14B8A6"),
+            Game("لعبة الأسئلة", "اختبر معلوماتك في دقائق", "#F59E0B"),
+            Game("لعبة الكلمات", "اكتب الكلمات بسرعة ودقة", "#8B5CF6"),
+            Game("لعبة الصور", "اكتشف الاختلافات والأنماط", "#EF4444"),
+            Game("لعبة التحدي", "أضف مستوى جديد من الإثارة", "#10B981")
+        )
+
+        binding.recyclerViewGames.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewGames.adapter = GameAdapter(games) { game ->
+            Toast.makeText(this, "تم اختيار: ${game.title}", Toast.LENGTH_SHORT).show()
+        }
     }
 }
